@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Username Generator</title>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background-color: yellow;
+    }
+
+     OUTER CONTAINER{
+      background-color: white;
+      border: 3px solid black;
+      padding: 20px;
+      max-width: 400px;
+    }
+    
+    p {
+  color: #0000ff;
+}
+
+    select, button {
+      font-size: 16px;
+      margin: 5px;
+      padding: 5px;
+      
+    }
+button:hover {
+  transform: scale(1.1); /* This makes the button 10% larger */
+  background-color: yellow; /* This changes the button color while hovering */
+  transition: 0.3s; /* This makes the change look smooth, not jerky */
+  cursor: pointer; /* This turns your mouse into the "pointing hand" icon */
+}
+
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid black;
+      min-height: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>Username Generator</h2>
+
+    <select id="choice1"></select>
+    <select id="choice2"></select>
+    <select id="choice3"></select>
+
+    <br>
+
+    <button onclick="generateUsername()">Generate</button>
+
+    <div id="output">Your username will appear here</div>
+  </div>
+
+  <script>
+    /*************************************************
+     * STUDENTS EDIT HERE
+     *************************************************/
+
+    const categories = ["plant", "color", "weather", "speed", "food"];
+
+    const words = {
+      plant: ["grass", "tree", "flower", "potato", "rose"],
+      color: ["red", "green", "blue", "yellow", "purple"],
+      weather: ["rain", "storm", "sun", "cloudy", "hurricane"],
+      speed: ["fast", "slow", "sluggish", "quick", "lightspeed"],
+      food: ["pizza", "burger", "pasta", "salad", "bread"]
+    };
+
+    /*************************************************
+     * DO NOT EDIT BELOW
+     *************************************************/
+
+    const select1 = document.getElementById("choice1");
+    const select2 = document.getElementById("choice2");
+    const select3 = document.getElementById("choice3");
+
+    for (let category of categories) {
+      let option1 = document.createElement("option");
+      option1.value = category;
+      option1.textContent = category;
+      select1.appendChild(option1);
+
+      let option2 = document.createElement("option");
+      option2.value = category;
+      option2.textContent = category;
+      select2.appendChild(option2);
+      
+      let option3 = document.createElement("option");
+      option3.value = category;
+      option3.textContent = category;
+      select3.appendChild(option3);
+    }
+
+    function generateUsername() {
+      const cat1 = select1.value;
+      const cat2 = select2.value;
+      const cat3 = select3.value;
+
+      const list1 = words[cat1];
+      const list2 = words[cat2];
+      const list3 = words[cat3];
+
+      const word1 = list1[Math.floor(Math.random() * list1.length)];
+      const word2 = list2[Math.floor(Math.random() * list2.length)];
+      const word3 = list3[Math.floor(Math.random() * list3.length)];
+      const randomNumber = Math.floor(Math.random() * 100); 
+
+      document.body.style.backgroundColor = "hsl(" + Math.random() * 360 + ", 70%, 80%)";
+
+      
+      const username =
+        word1.charAt(0).toUpperCase() + word1.slice(1) +
+        word2.charAt(0).toUpperCase() + word2.slice(1) + word3.charAt(0).toUpperCase() + word3.slice(1) + randomNumber;
+
+      document.getElementById("output").textContent = username;
+    }
+  </script>
+
+</body>
+</html>
+
